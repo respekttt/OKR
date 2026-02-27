@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <title>Головна - Автосалон</title>
-    <link rel="stylesheet" href="./styles/index.css">
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <style>
+        a {
+            color: #8e44ad; 
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body bgcolor="#f5f5dc" link="#0000FF" alink="#FF0000" vlink="#800080">
 
-    <h1 align="center" name="top">Ласкаво просимо до нашого Автосалону!</h1>
-    
+    <h1 align="center" name="top" id="main-title">Ласкаво просимо до нашого Автосалону!</h1>
+    <p style="background-color: #3498db; color: white; padding: 10px; text-align: center;">
+        Всіх вітаємо в нашому автосалоні!
+    </p>
     <p align="center">
         <b>
             [ <a href="index.html">Головна</a> ] 
@@ -27,19 +36,19 @@
 
     <h2>Чому обирають нас?</h2>
     
-    <ul type="square">
+    <ul type="square" class="styled-ul">
         <li>Величезний вибір авто в наявності.</li>
         <li>Гарантія якості та сервісне обслуговування.</li>
         <li>Найкращі ціни на ринку.</li>
     </ul>
 
-    <ol type="I">
+    <ol type="I" class="styled-ol">
         <li>Етап вибору автомобіля.</li>
         <li>Оформлення документів.</li>
         <li>Отримання ключів.</li>
     </ol>
 
-    <dl>
+    <dl class="styled-dl">
         <dt><b>Тест-драйв</b></dt>
         <dd><i>Пробна поїздка на автомобілі для оцінки його ходових якостей.</i></dd>
         <dt><b>Лізинг</b></dt>
