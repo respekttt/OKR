@@ -1,0 +1,77 @@
+
+body {
+    background-color: #f4f6f9; 
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+h1, h2, h3 {
+    font-family: Georgia, serif;
+    font-style: italic;
+    text-align: center;
+    color: #2c3e50;
+}
+
+
+#main-title {
+    color: #e74c3c !important; 
+    font-size: 34px;
+}
+
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.styled-ul {
+    background-color: #e8f8f5;
+    border: 2px dashed #1abc9c; 
+    padding: 20px 40px; 
+    margin: 15px auto; 
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.styled-ol {
+    background-color: #fef9e7;
+    border: 2px solid #f1c40f;
+    padding: 20px 40px;
+    margin: 15px auto;
+    color: #d35400;
+}
+
+.styled-dl {
+    background-color: #fdf2e9;
+    border-left: 5px solid #e67e22;
+    padding: 15px 30px;
+    margin: 15px auto;
+}
+
+.styled-table {
+    font-family: Tahoma, sans-serif;
+    background-color: #ffffff; 
+    border: 3px solid #34495e; 
+    margin: 25px auto; 
+}
+.styled-table th, .styled-table td {
+    padding: 15px; 
+    font-size: 18px;
+}
+
+/* Contextual (descendant) selector */
+.styled-dl dd i {
+    color: #6e2c00;
+}
+
+/* Child selector */
+.styled-ul > li {
+    margin: 6px 0;
+    font-weight: 600;
+}
+
+/* Adjacent sibling selector */
+h2 + ul {
+    box-shadow: 0 0 0 3px rgba(211, 233, 8, 0.993);
+}
