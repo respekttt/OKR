@@ -60,18 +60,15 @@ a {
     font-size: 18px;
 }
 
-/* Contextual (descendant) selector */
 .styled-dl dd i {
     color: #6e2c00;
 }
 
-/* Child selector */
 .styled-ul > li {
     margin: 6px 0;
     font-weight: 600;
 }
 
-/* Adjacent sibling selector */
 h2 + ul {
-    box-shadow: 0 0 0 3px rgba(211, 233, 8, 0.993);
+    box-shadow: 0 0 0 3px rgba(108, 109, 96, 0.575);
 }
