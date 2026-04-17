@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Головна - Автосалон</title>
+    <link rel="stylesheet" href="./styles/style.css">
+
+    <style>
+        a {
+            color: #8e44ad; 
+            font-weight: bold;
+        }
+        
+    </style>
+    <script src="./script.js"></script>
+    <script>
+    function startConsultation() {
+        alert("Вітаємо в нашому преміум автосалоні!");
+        let isReady = confirm("Бажаєте підібрати автомобіль прямо зараз?");
+    
+        if (isReady) {
+            let favoriteBrand = prompt("Яка ваша улюблена марка авто?", "Наприклад, Tesla або BMW");
+            if (favoriteBrand) {
+            alert("Чудовий вибір! Зараз покажемо найкращі варіанти для " + favoriteBrand);
+      }
+    }
+  }
+
+  window.onload = function() {
+    startConsultation();
+  }
+    </script>
+</head>
+<body bgcolor="#f5f5dc" link="#0000FF" alink="#FF0000" vlink="#800080">
+
+    <div class="page-wrap">
+
+        <h1 align="center" name="top" id="main-title">Ласкаво просимо до нашого Автосалону!</h1>
+        <div class="welcome-banner">
+            Всіх вітаємо в нашому автосалоні!
+            <span class="inline-note">Оберіть авто вашої мрії вже сьогодні</span>
+        </div>
+        <p align="center">
+            <b>
+                [ <a href="index.html">Головна</a> ] 
+                [ <a href="about.html">Про нас</a> ]
+                [ <a href="catalog.html">Каталог</a> ] 
+                [ <a href="equipment.html">Комплектації</a> ]
+            </b>
+        </p>
+        <hr>
+
+        <p align="center">
+            <a href="#contacts">👇 Перейти до контактної інформації (внизу сторінки)</a> <br><br>
+            <a href="about.html#history">📖 Читати історію нашої компанії</a> <br><br>
+            <a href="https://uk.wikipedia.org/wiki/Автомобіль" target="_blank">🌐 Що таке автомобіль? (Вікіпедія)</a>
+        </p>
+
+        <div class="offer-strip clearfix">
+            <div class="offer-card offer-left">
+                <h3>Тижнева акція</h3>
+                <p>Знижка <span class="accent">до 10%</span> на обрані моделі.</p>
+            </div>
+            <div class="offer-card offer-right">
+                <h3>Бонус сервісу</h3>
+                <p><span class="accent">0 грн</span> за перше ТО для нових клієнтів.</p>
+            </div>
+        </div>
+
+        <div class="action-panel">
+            <h2>Сервіси автосалону</h2>
+            <p align="center">Оберіть потрібну дію: підбір авто, консультацію, порівняння або перехід до каталогу.</p>
+            <div class="action-grid">
+                <button type="button" class="action-button action-button--gold" id="consultation-btn">
+                    <span class="btn-title">Замовити консультацію</span>
+                    <span class="btn-subtitle">Ввести дані клієнта та зберегти заявку</span>
+                </button>
+                <button type="button" class="action-button action-button--navy" id="selection-btn">
+                    <span class="btn-title">Підбір авто</span>
+                    <span class="btn-subtitle">Рекомендації за вашим бюджетом</span>
+                </button>
+                <button type="button" class="action-button action-button--sky" id="compare-models-btn">
+                    <span class="btn-title">Порівняти моделі</span>
+                    <span class="btn-subtitle">Оберіть дві машини для вибору</span>
+                </button>
+                <button type="button" class="action-button action-button--green" id="offers-btn">
+                    <span class="btn-title">Поточні акції</span>
+                    <span class="btn-subtitle">Показати сезонні пропозиції</span>
+                </button>
+                <button type="button" class="action-button action-button--brick" id="catalog-btn">
+                    <span class="btn-title">Відкрити каталог</span>
+                    <span class="btn-subtitle">Перейти до повного вибору</span>
+                </button>
+            </div>
+        </div>
+
+        <h2>Чому обирають нас?</h2>
+        
+        <ul type="square" class="styled-ul">
+            <li>Величезний вибір авто в наявності.</li>
+            <li>Гарантія якості та сервісне обслуговування.</li>
+            <li>Найкращі ціни на ринку.</li>
+        </ul>
+
+        <ol type="I" class="styled-ol">
+            <li>Етап вибору автомобіля.</li>
+            <li>Оформлення документів.</li>
+            <li>Отримання ключів.</li>
+        </ol>
+
+        <dl class="styled-dl">
+            <dt><b>Тест-драйв</b></dt>
+            <dd><i>Пробна поїздка на автомобілі для оцінки його ходових якостей.</i></dd>
+            <dt><b>Лізинг</b></dt>
+            <dd><i>Довгострокова оренда автомобіля з правом подальшого викупу.</i></dd>
+        </dl>
+
+        <h2>Наш каталог</h2>
+        <iframe src="catalog.html" width="100%" height="400" border="1" name="catalog_frame">
+            Ваш браузер не підтримує плаваючі фрейми!
+        </iframe>
+
+        <br><br><br><br><br><br><br><br>
+
+        <a name="contacts"></a>
+        <h2>Контакти</h2>
+        <div class="contact-box">
+            <p>Адреса: м. Київ, вул. Автомобільна, 1<br>
+            Телефон: +38 (099) 123-45-67 <br>
+            <a href="#top">Повернутися на гору</a></p>
+            <button type="button" class="meta-button" id="developer-info-btn">Інформація про розробника</button>
+        </div>
+
+        <div class="bottom-page-action">
+            <button type="button" class="meta-button" id="background-btn">Тимчасово змінити фон</button>
+        </div>
+
+    </div>
+
+</body>
+</html>
