@@ -15,9 +15,6 @@ function useDialog() {
   }
 }
 
-
-
-
 function showDeveloperInfo(lastName, firstName, position = "Frontend Розробник") {
   alert(`Розробник сторінки:\nПрізвище: ${lastName}\nІм'я: ${firstName}\nПосада: ${position}`);
 }
@@ -49,6 +46,86 @@ function redirectToCatalog() {
 
 function showCurrentOffers() {
   alert("Поточні акції салону:\n• Знижка до 10% на обрані моделі\n• 0 грн за перше ТО для нових клієнтів\n• Свіжі поставки з США щотижня");
+}
+
+function updateEventStatus(message, state = 'info') {
+  const statusBox = document.getElementById('event-status');
+  if (!statusBox) {
+    return;
+  }
+
+  statusBox.textContent = message;
+  statusBox.className = `event-status event-status--${state}`;
+}
+
+function showTestDriveAlert() {
+  updateEventStatus('Заявку на тест-драйв успішно прийнято менеджером автосалону.', 'info');
+}
+
+function logTestDrive(){
+  console.log('Кнопка була натиснута')
+}
+
+function requestConsultation() {
+  const clientName = prompt('Введіть ваше ім\'я та прізвище:', 'Іван Петренко');
+  const phoneNumber = prompt('Введіть номер телефону для консультації:', '+38 (0__) ___-__-__');
+  const preferredBrand = prompt('Яка марка авто вас цікавить?', 'BMW');
+
+  if (clientName && phoneNumber && preferredBrand) {
+    alert(
+      `Заявка на консультацію прийнята:\n` +
+      `Клієнт: ${clientName}\n` +
+      `Телефон: ${phoneNumber}\n` +
+      `Цікавить марка: ${preferredBrand}\n\n` +
+      `Менеджер зв'яжеться з вами найближчим часом.`
+    );
+  }
+}
+
+const showroomEventHandler = {
+  handleEvent(event) {
+    const activeElement = event.currentTarget;
+    console.log('Обробник-об\'єкт спрацював на елементі:', activeElement);
+
+    // const elementDescription = `${activeElement.tagName.toLowerCase()}#${activeElement.id}`;
+    // updateEventStatus(
+    //   `Відділ тест-драйву зафіксував звернення клієнта. Канал прийому: ${elementDescription} (визначено через event.currentTarget).`,
+    //   'success'
+    // );
+
+    activeElement.classList.add('is-active-handler');
+    setTimeout(() => {
+      activeElement.classList.remove('is-active-handler');
+    }, 400);
+  }
+};
+
+let isShowroomHandlerActive = false;
+
+function attachShowroomEventHandler(testDriveBtn) {
+  if (!testDriveBtn || isShowroomHandlerActive) {
+    return;
+  }
+
+  testDriveBtn.addEventListener('click', showTestDriveAlert);
+  testDriveBtn.addEventListener('click', logTestDrive);
+  testDriveBtn.addEventListener('click', showroomEventHandler);
+  testDriveBtn.disabled = false;
+  isShowroomHandlerActive = true;
+  updateEventStatus('Запис на тест-драйв ВІДКРИТО: менеджер фіксує звернення клієнтів.', 'success');
+}
+
+function detachShowroomEventHandler(testDriveBtn) {
+  if (!testDriveBtn || !isShowroomHandlerActive) {
+    return;
+  }
+
+  testDriveBtn.removeEventListener('click', showTestDriveAlert);
+  testDriveBtn.removeEventListener('click', logTestDrive);
+  testDriveBtn.removeEventListener('click', showroomEventHandler);
+  testDriveBtn.disabled = true;
+  isShowroomHandlerActive = false;
+  updateEventStatus('Запис на тест-драйв ЗАКРИТО: обробник заявок вимкнено', 'warning');
 }
 
 if (document.body && document.readyState === 'loading') {
@@ -88,23 +165,40 @@ document.addEventListener('DOMContentLoaded', () => {
       console.info('nodeValue та data однакові:', descriptionNodeValue === descriptionData);
     }
   }
-  const consultationButton = document.getElementById('consultation-btn');
-  if (consultationButton) {
-    consultationButton.addEventListener('click', () => {
-      const clientName = prompt('Введіть ваше ім\'я та прізвище:', 'Іван Петренко');
-      const phoneNumber = prompt('Введіть номер телефону для консультації:', '+38 (0__) ___-__-__');
-      const preferredBrand = prompt('Яка марка авто вас цікавить?', 'BMW');
-
-      if (clientName && phoneNumber && preferredBrand) {
-        alert(
-          `Заявка на консультацію прийнята:\n` +
-          `Клієнт: ${clientName}\n` +
-          `Телефон: ${phoneNumber}\n` +
-          `Цікавить марка: ${preferredBrand}\n\n` +
-          `Менеджер зв'яжеться з вами найближчим часом.`
-        );
+  const catalogMenu = document.getElementById('catalog-menu');
+  if (catalogMenu) {
+    const menuBehavior = {
+      requestConsultation() {
+        requestConsultation();
+      },
+      showOffers() {
+        showCurrentOffers();
+      },
+      goHome() {
+        location.href = 'index.html';
+      },
+      registerTestDrive() {
+        updateEventStatus('Клієнт натиснув кнопку запису на тест-драйв у каталозі.', 'info');
       }
-    });
+    };
+
+    catalogMenu.onclick = (event) => {
+      const actionButton = event.target.closest('[data-action]');
+      if (!actionButton || !catalogMenu.contains(actionButton)) {
+        return;
+      }
+
+      const actionName = actionButton.dataset.action;
+      const actionMethod = menuBehavior[actionName];
+      if (typeof actionMethod === 'function') {
+        actionMethod();
+      }
+    };
+  }
+
+  const consultationButton = document.getElementById('consultation-btn');
+  if (consultationButton && !catalogMenu) {
+    consultationButton.addEventListener('click', requestConsultation);
   }
 
   const selectionButton = document.getElementById('selection-btn');
@@ -130,7 +224,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const offersButton = document.getElementById('offers-btn');
-  if (offersButton) {
+  if (offersButton && !catalogMenu) {
     offersButton.addEventListener('click', showCurrentOffers);
   }
 
@@ -140,10 +234,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const homeButton = document.getElementById('home-btn');
-  if (homeButton) {
+  if (homeButton && !catalogMenu) {
     homeButton.addEventListener('click', () => {
       location.href = 'index.html';
     });
+  }
+
+  const inventoryList = document.getElementById('inventory-list');
+  if (inventoryList) {
+    inventoryList.onclick = (event) => {
+      const clickedItem = event.target.closest('.inventory-item');
+      if (!clickedItem || !inventoryList.contains(clickedItem)) {
+        return;
+      }
+
+      const activeItem = inventoryList.querySelector('.inventory-item--active');
+      if (activeItem) {
+        activeItem.classList.remove('inventory-item--active');
+      }
+
+      clickedItem.classList.add('inventory-item--active');
+      updateEventStatus(
+        `Обрано модель: ${clickedItem.dataset.model}. Менеджер готує деталі комплектації.`,
+        'info'
+      );
+    };
   }
 
   const arrivalButton = document.getElementById('arrival-btn');
@@ -155,8 +270,28 @@ document.addEventListener('DOMContentLoaded', () => {
   if (backgroundButton) {
     backgroundButton.addEventListener('click', activateEcoMode);
   }
-  
-  
+
+  const testDriveBtn = document.getElementById('drive-btn')
+  if (testDriveBtn) {
+    attachShowroomEventHandler(testDriveBtn)
+
+  }
+
+  const removeHandlerBtn = document.getElementById('remove-handler-btn');
+  if (removeHandlerBtn && testDriveBtn) {
+    removeHandlerBtn.addEventListener('click', () => {
+      detachShowroomEventHandler(testDriveBtn);
+      console.log('showroomEventHandler успішно видалено з drive-btn');
+    });
+  }
+
+  const restoreHandlerBtn = document.getElementById('restore-handler-btn');
+  if (restoreHandlerBtn && testDriveBtn) {
+    restoreHandlerBtn.addEventListener('click', () => {
+      attachShowroomEventHandler(testDriveBtn);
+      console.log('showroomEventHandler знову додано на drive-btn');
+    });
+  }
 });
 
 function addNewArrival() {
@@ -202,4 +337,5 @@ function addNewArrival() {
     };
   }, 2500);
 }
+
 
