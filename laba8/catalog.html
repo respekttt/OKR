@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Каталог - Автосалон</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body bgcolor="#ffffff">
+
+    <div class="page-wrap">
+
+    <h1 align="center">Каталог автомобілів</h1>
+    <div class="welcome-banner">
+        Обирайте модель під свій стиль
+        <span class="inline-note">доступні нові поставки</span>
+    </div>
+    
+    <p align="center">
+        <b>
+            [ <a href="index.html">Головна</a> ] 
+            [ <a href="about.html">Про нас</a> ] 
+            [ <a href="catalog.html">Каталог</a> ] 
+            [ <a href="equipment.html">Комплектації</a> ]
+        </b>
+    </p>
+    <hr>
+
+    <div class="offer-strip clearfix">
+        <div class="offer-card offer-left">
+            <h3>Новинки сезону</h3>
+            <p>Оновлена лінійка з пакетом <span class="accent">Smart Safety</span>.</p>
+        </div>
+        <div class="offer-card offer-right">
+            <h3>Швидке оформлення</h3>
+            <p>Попереднє бронювання онлайн за <span class="accent">5 хвилин</span>.</p>
+        </div>
+    </div>
+
+    <div class="action-panel">
+        <h2>Сервіси каталогу</h2>
+        <p align="center">Зручні дії для перегляду пропозицій, консультації та додавання нових надходжень.</p>
+        <div class="action-grid" id="catalog-menu">
+            <button type="button" class="action-button action-button--navy" id="consultation-btn" data-action="requestConsultation">
+                <span class="btn-title">Замовити консультацію</span>
+                <span class="btn-subtitle">Швидко залишити заявку</span>
+            </button>
+            <button type="button" class="action-button action-button--sky" id="offers-btn" data-action="showOffers">
+                <span class="btn-title">Поточні акції</span>
+                <span class="btn-subtitle">Переглянути вигідні умови</span>
+            </button>
+            <button type="button" class="action-button action-button--brick" id="home-btn" data-action="goHome">
+                <span class="btn-title">На головну</span>
+                <span class="btn-subtitle">Повернутися до автосалону</span>
+            </button>
+            <button type="button" class="action-button action-button--green" id="drive-btn" data-action="registerTestDrive">
+                <span class="btn-title">Тест-драйв</span>
+                <span class="btn-subtitle">Записатися на тест-драйв</span>
+            </button>
+        </div>
+    </div>
+
+    <div id="main-offer" class="offer-card catalog-featured">
+        <h2 id="car-title">Tesla Model 3 Highland</h2>
+        <p class="spec-item">Диски: <strong>18-inch Photon</strong></p>
+        <h3 id="price-tag">Ціна: 34 200$</h3>
+        <p>Свіжий імпорт зі США, мінімальні пошкодження.</p>
+        <div class="catalog-inline-actions">
+            <p class="catalog-inline-note">Можна швидко додати цю машину до вітрини, якщо з’явилось нове надходження.</p>
+            <button type="button" class="catalog-inline-button" id="arrival-btn">
+                Додати нове надходження
+            </button>
+        </div>
+    </div>
+
+    <section class="staff-panel" aria-label="Службова панель менеджера">
+        <h3>Службова панель менеджера тест-драйву</h3>
+        <p class="staff-panel-note">Службові інструменти для керування прийомом заявок.</p>
+        <div class="staff-panel-actions">
+            <button type="button" class="meta-button" id="remove-handler-btn">Закрити запис на тест-драйв</button>
+            <button type="button" class="meta-button" id="restore-handler-btn">Відкрити запис знову</button>
+        </div>
+        <p id="event-status" class="event-status">
+            Журнал відділу тест-драйву: натисніть кнопку прийому заявки, щоб зафіксувати звернення клієнта.
+        </p>
+    </section>
+    
+    <h2 align="center">Модельний ряд</h2>
+    <p class="inventory-help">Оберіть модель зі списку. При наведенні миші елементи підсвічуються через mouseover/mouseout.</p>
+    <ul id="inventory-list" class="inventory-list">
+        <li class="inventory-item" data-model="BMW 320i">
+            <span class="inventory-brand">BMW 320i</span>
+            <span class="inventory-note">Спортивний характер та інновації.</span>
+        </li>
+        <li class="inventory-item" data-model="Audi A6">
+            <span class="inventory-brand">Audi A6</span>
+            <span class="inventory-note">Технологічність та повний привід quattro.</span>
+        </li>
+        <li class="inventory-item" data-model="Mercedes C-Class">
+            <span class="inventory-brand">Mercedes C-Class</span>
+            <span class="inventory-note">Комфорт класу люкс та статус.</span>
+        </li>
+        <li class="inventory-item" data-model="Lexus RX">
+            <span class="inventory-brand">Lexus RX</span>
+            <span class="inventory-note">Надійність, безпека і преміальна якість.</span>
+        </li>
+    </ul>
+
+    <section class="drag-training" aria-label="Тренування менеджера з перетягування">
+        <h3>Зона переміщення авто-картки</h3>
+        <p class="drag-note">Затисніть картку мишкою та перетягніть її з лівого майданчика у правий.</p>
+        <div class="drag-layout">
+            <div class="drop-zone" id="source-zone">
+                <h4>Майданчик нових надходжень</h4>
+                <div class="drag-card" id="drag-car-card">
+                    <img src="./assets/lexus.png" alt="Lexus" width="84" height="52">
+                    <p>Lexus RX - авто готове до показу клієнту.</p>
+                </div>
+            </div>
+            <div class="drop-zone" id="target-zone">
+                <h4>Зона тест-драйву</h4>
+                <p class="drop-zone-empty">Перетягніть картку сюди для підготовки до тест-драйву.</p>
+            </div>
+        </div>
+        <p id="drag-status" class="drag-status">Статус: картка знаходиться на майданчику нових надходжень.</p>
+    </section>
+
+    <div class="bottom-page-action">
+        <button type="button" class="meta-button" id="background-btn">Тимчасово змінити фон</button>
+    </div>
+
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
